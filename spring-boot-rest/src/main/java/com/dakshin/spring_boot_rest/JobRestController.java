@@ -28,7 +28,7 @@ public class JobRestController {
         return service.getJob(postId);
     }
 
-    @PostMapping("jobPost")
+    @PostMapping("jobPost") //similarly like produces we can use consumes to set that it receives only json data not xml
     public void addJob(@RequestBody JobPost jobPost){
         service.addJob(jobPost);
     }
