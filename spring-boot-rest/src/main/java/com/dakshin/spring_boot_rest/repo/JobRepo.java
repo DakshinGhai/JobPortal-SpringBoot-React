@@ -1,6 +1,8 @@
 package com.dakshin.spring_boot_rest.repo;
 
 import com.dakshin.spring_boot_rest.model.JobPost;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -8,9 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository
-public class JobRepo {
+public interface JobRepo extends JpaRepository<JobPost,Integer> {
 
 
+    List<JobPost> findByPostProfileContainingOrPostDescContaining(String postProfile,String postDesc);
+
+ /*
     List<JobPost> jobs = new ArrayList<>(Arrays.asList(
 
             new JobPost(1, "Java Developer", "Must have good experience in core Java and advanced Java", 2,
@@ -32,6 +37,7 @@ public class JobRepo {
             new JobPost(5, "Mobile App Developer", "Experience in mobile app development for iOS and Android", 3,
                     List.of("iOS Development", "Android Development", "Mobile App"))
     ));
+
 
 
     public List<JobPost> getAllJobs(){return jobs;}
@@ -66,4 +72,7 @@ public class JobRepo {
             }
         }
     }
+
+  */
+
 }

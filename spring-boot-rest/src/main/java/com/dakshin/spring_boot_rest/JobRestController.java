@@ -28,18 +28,33 @@ public class JobRestController {
         return service.getJob(postId);
     }
 
+    @GetMapping("jobPosts/keyword/{keyword}")
+    public List<JobPost> searchByKeyword(@PathVariable("keyword") String keyword){
+        return service.search(keyword);
+    }
+
     @PostMapping("jobPost") //similarly like produces we can use consumes to set that it receives only json data not xml
     public void addJob(@RequestBody JobPost jobPost){
         service.addJob(jobPost);
     }
-    @PutMapping("jobPost/{postId}")
-    public void updateJob(@PathVariable int postId,@RequestBody JobPost jobPost){
-        service.updateJob(postId,jobPost);
-    }
+//    @PutMapping("jobPost/{postId}")
+//    public void updateJob(@PathVariable int postId,@RequestBody JobPost jobPost){
+//        service.updateJob(postId,jobPost);
+//    }
 
+    @PutMapping("jobPost")
+    public void updateJob(@RequestBody JobPost jobPost){
+        service.updateJob(jobPost);
+    }
     @DeleteMapping("jobPost/{postId}")
     public void deleteJob(@PathVariable int postId){
         service.deleteJob(postId);
+    }
+
+    @GetMapping("load")
+    public String load(){
+        service.load();
+        return"success";
     }
 
 }
